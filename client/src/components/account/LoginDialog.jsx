@@ -50,9 +50,11 @@ const dialogStyle = {
 const LoginDialog = () => {
 
     const onLoginSuccess = async (res) => {
+        console.log(res) // we need to decode the credential in the res
     };
 
     const onLoginFailure = (res) => {
+        console.log('Failed - ',res)
     };
 
     return (
