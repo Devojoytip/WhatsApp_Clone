@@ -4,6 +4,8 @@ import { qrCodeImage } from '../../constants/index';
 
 import { GoogleLogin } from '@react-oauth/google';
 
+import jwt_decode from "jwt-decode";
+
 const Component = styled(Box)`
     display: flex; 
 `;
@@ -51,10 +53,12 @@ const LoginDialog = () => {
 
     const onLoginSuccess = async (res) => {
         console.log(res) // we need to decode the credential in the res
+        const decoded = jwt_decode(res.credential);
+        console.log('Decoded - ',decoded)
     };
 
     const onLoginFailure = (res) => {
-        console.log('Failed - ',res)
+        console.log('Failed - ', res)
     };
 
     return (
