@@ -1,8 +1,10 @@
 import React from 'react'
+import LoginDialog from './account/LoginDialog'
+
 
 const Messenger = () => {
   return (
-    <div>Messenger</div>
+    <LoginDialog />
   )
 }
 
