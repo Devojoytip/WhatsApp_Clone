@@ -31,11 +31,16 @@ const drawerStyle = {
 }
 
 const InfoDrawer = (props) => {
-    const {open,setOpen} = props;
+    const { open, setOpen, profile } = props;
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
     return (
         <Drawer
             open={open}
-            onClose={setOpen}
+            onClose={handleClose} // to close drawer when clicked outside
             PaperProps={{ sx: drawerStyle }}
             style={{ zIndex: 1500 }}
         >
@@ -44,7 +49,9 @@ const InfoDrawer = (props) => {
                 <Text>Profile</Text>
             </Header>
             <Component>
-            <Profile></Profile>
+                {
+                    profile && <Profile></Profile>
+                }
             </Component>
         </Drawer>
     )
