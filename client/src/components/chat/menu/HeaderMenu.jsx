@@ -1,5 +1,8 @@
 import { useState, useContext } from 'react';
 
+// Menu & MenuItem from mui with props passed to adjust functions
+// like position, closing
+
 import { MoreVert } from '@mui/icons-material';
 import { Menu, MenuItem, styled } from '@mui/material';
 

@@ -7,6 +7,7 @@ import { AccountContext } from '../../../context/AccountProvider';
 
 //components
 import HeaderMenu from './HeaderMenu';
+import InfoDrawer from '../../drawer/InfoDrawer';
 
 const Component = styled(Box)`
     height: 44px;
@@ -40,15 +41,22 @@ const Header = () => {
 
     const { account } = useContext(AccountContext); // use decoded info to get pic of gmail account
 
+    const [openDrawer, setOpenDrawer] = useState(false)
+
+    const handleClick=()=>{
+        setOpenDrawer(true)
+    }
+
     return (
         <>
             <Component>
-                <Image src={account.picture} />
+                <Image src={account.picture} onClick={handleClick} />
                 <Wrapper>
                     <MessageIcon />
                     <HeaderMenu/>
                 </Wrapper>
             </Component>
+            <InfoDrawer open={openDrawer} setOpen={setOpenDrawer}  />
         </>
     )
 }
