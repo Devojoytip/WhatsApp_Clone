@@ -1,6 +1,6 @@
-import { useContext } from 'react';
 import { Dialog, styled, Box } from '@mui/material';
 import Menu from './menu/Menu';
+import EmptyChat from './chat/EmptyChat';
 
 const Component = styled(Box)`
     display: flex;
@@ -42,7 +42,7 @@ const ChatDialog = () => {
                     <Menu/>
                 </LeftComponent>
                 <RightComponent>
-                    
+                    <EmptyChat></EmptyChat>
                 </RightComponent>
             </Component>
         </Dialog>
