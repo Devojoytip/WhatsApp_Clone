@@ -5,6 +5,7 @@ import { useState, useContext } from 'react';
 
 import { MoreVert } from '@mui/icons-material';
 import { Menu, MenuItem, styled } from '@mui/material';
+import InfoDrawer from '../../drawer/InfoDrawer';
 
 const MenuOption = styled(MenuItem)`
     font-size: 14px
@@ -24,9 +25,15 @@ const HeaderMenu = () => {
         setOpen(null);
     };
 
+    // to open drawer on click on MenuOption of profile
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const toggleDrawer = () => {
+        setOpenDrawer(true);
+    }
+
     return (
         <>
-        <MoreVert onClick={handleClick} />
+            <MoreVert onClick={handleClick} />
             <Menu
                 anchorEl={open}
                 keepMounted
@@ -37,15 +44,17 @@ const HeaderMenu = () => {
                     vertical: 'bottom',
                     horizontal: 'center',
                 }}
-                transformOrigin={{ 
+                transformOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
                 }}
             >
-                <MenuOption onClick={handleClose}>Profile</MenuOption>
+                {/* calling 2 fns on onClick */}
+                <MenuOption onClick={() => { handleClose(); toggleDrawer(); }}>Profile</MenuOption>
                 <MenuOption onClick={handleClose}>My account</MenuOption>
                 <MenuOption onClick={handleClose}>Logout</MenuOption>
             </Menu>
+            <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
         </>
     )
 }
