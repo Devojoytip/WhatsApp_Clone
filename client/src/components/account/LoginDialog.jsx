@@ -7,6 +7,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { useContext } from 'react';
 import { AccountContext } from '../../context/AccountProvider';
+import { addUser } from '../../services/api';
 
 const Component = styled(Box)`
     display: flex; 
@@ -60,6 +61,9 @@ const LoginDialog = () => {
         const decoded = jwt_decode(res.credential);
         console.log('Decoded - ',decoded)       
         setAccount(decoded) // set account to decoded to check if logged in or not
+
+        //api call
+        await addUser(decoded)
     };
 
     const onLoginFailure = (res) => {
