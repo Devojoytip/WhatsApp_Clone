@@ -1,8 +1,15 @@
-import React from 'react'
+import {Box,Typography} from "@mui/material"
 
-const Conversation = () => {
+const Conversation = ({user}) => {
   return (
-    <div>Conversation</div>
+    <Box>
+      <Box>
+        <img src={user.picture} alt="" />
+      </Box>
+      <Box>
+        <Typography>{user.name}</Typography>
+      </Box>
+    </Box>
   )
 }
 

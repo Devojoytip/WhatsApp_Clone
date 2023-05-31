@@ -5,13 +5,24 @@ export const addUser = async (request, response) => {
         let exist = await User.findOne({ sub: request.body.sub });
 
         if(exist) {
+            console.log('User already exists')
             response.status(200).json('User already exists');
             return;
         }
 
         const newUser = new User(request.body);
         await newUser.save();
+        console.log('User created - ',newUser)
         return response.status(200).json(newUser);
+    } catch (error) {
+        response.status(500).json(error);
+    }
+}
+
+export const getUsers = async (request, response) => {
+    try {
+        const users = await User.find({});
+        response.status(200).json(users);
     } catch (error) {
         response.status(500).json(error);
     }
