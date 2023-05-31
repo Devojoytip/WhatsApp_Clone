@@ -3,14 +3,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const url=process.env.DB_URL
+const url = process.env.DB_URL
 
-const Connection= async ()=>{
+const Connection = async () => {
     try {
-        await mongoose.connect(url,{useUnifiedTopology:true})
+        await mongoose.connect(url, { useUnifiedTopology: true})
         console.log('Database connected')
     } catch (error) {
-        console.log('Error connecting to database - ',error)
+        console.log('Error connecting to database - ', error)
     }
 }
 

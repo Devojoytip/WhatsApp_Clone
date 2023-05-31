@@ -24,7 +24,7 @@ const Wrapper = styled(Box) `
         padding: 8px;
         color: #000;
     };
-    & :first-child {
+    & :first-of-type {
         font-size: 22px;
         margin-right: 8px;
         margin-top: 3px;
@@ -56,7 +56,7 @@ const Header = () => {
                     <HeaderMenu/>
                 </Wrapper>
             </Component>
-            <InfoDrawer open={openDrawer} setOpen={setOpenDrawer}  />
+            <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
         </>
     )
 }

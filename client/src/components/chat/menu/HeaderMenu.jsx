@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
 // Menu & MenuItem from mui with props passed to adjust functions
 // like position, closing
@@ -15,7 +15,7 @@ const MenuOption = styled(MenuItem)`
 
 const HeaderMenu = () => {
 
-    const [open, setOpen] = useState(null);
+    const [open, setOpen] = useState(false);
 
     const handleClick = (event) => {
         setOpen(event.currentTarget);
@@ -39,7 +39,7 @@ const HeaderMenu = () => {
                 keepMounted
                 open={open}
                 onClose={handleClose}
-                getContentAnchorEl={null}
+                getcontentanchorel={null}
                 anchorOrigin={{ // wrt to anchor (ele which is above it - MoreVert here)
                     vertical: 'bottom',
                     horizontal: 'center',
