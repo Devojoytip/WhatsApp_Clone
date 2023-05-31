@@ -1,15 +1,33 @@
-import {Box,Typography} from "@mui/material"
+import { Box, Typography, styled } from "@mui/material"
 
-const Conversation = ({user}) => {
+const Component = styled(Box)`
+    height: 45px;
+    display: flex;
+    padding: 13px 0;
+    cursor: pointer;
+`;
+
+const Image = styled('img')({
+  width: 50,
+  height: 50,
+  objectFit: 'cover',
+  borderRadius: '50%',
+  padding: '0 14px'
+});
+
+
+const Conversation = ({ user }) => {
   return (
-    <Box>
+    <Component>
       <Box>
-        <img src={user.picture} alt="" />
+        <Image src={user.picture} alt="display picture" />
       </Box>
       <Box>
-        <Typography>{user.name}</Typography>
+        <Box>
+          <Typography>{user.name}</Typography>
+        </Box>
       </Box>
-    </Box>
+    </Component>
   )
 }
 
