@@ -38,14 +38,14 @@ const Status = styled(Typography)`
     margin-left: 12px !important;
 `;
 
-const ChatHeader = () => {  
+const ChatHeader = ({person}) => {  
     
     const {account}=useContext(AccountContext)
     return (
         <Header>
-            <Image src={account.picture} alt="display picture" />     
+            <Image src={person.picture} alt="display picture" />     
             <Box>
-                <Name>{account.name}</Name>
+                <Name>{person.name}</Name>
                 <Status>Online</Status>    
             </Box>   
             <RightContainer>
