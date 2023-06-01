@@ -46,11 +46,11 @@ export const newMessage = async (data) => {
     }
 }
 
-export const getMessage = async (data) => {
+export const getMessages = async (id) => {
     try {
-        let res = await axios.post(`${url}/message/get`, data)
+        let res = await axios.post(`${url}/message/get/${id}`)
         return res.data;
     } catch (error) {
-        console.log(error.message)
+        console.log('Error calling getMessages api',error.message)
     }
 }

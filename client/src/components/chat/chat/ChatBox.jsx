@@ -7,7 +7,8 @@ import { getConversation } from "../../../services/api";
 
 const ChatBox = () => {
 
-  const { person, account } = useContext(AccountContext);
+  const { account, person } = useContext(AccountContext);
+  // const { person } = useContext(UserContext);
 
   const [conversation, setConversation] = useState(null)
 
@@ -18,7 +19,7 @@ const ChatBox = () => {
     }
 
     getConversationDetails();
-  }, [person.sub])
+  }, [account.sub])
 
   return (
     <Box>
