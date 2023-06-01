@@ -23,13 +23,17 @@ const Messages = ({ person, conversation }) => {
     // console.log(e);
     const code = e.keyCode || e.which;
     if (code === 13) {
+      // message which typed & send by user to person
       let message = {
         senderId: account.sub,
         receiverId: person.sub,
         conversationId: conversation._id,
-        type: 'text'
+        type: 'text',
+        text:value // value of message typed & sent
       }
       console.log('message - ',message)
+
+      // api call to store messages
     }
   }
 

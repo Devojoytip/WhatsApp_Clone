@@ -47,7 +47,7 @@ const Footer = ({ sendText, setValue }) => {
                 <InputField
                     placeholder="Type a message"
                     onChange={(e) => setValue(e.target.value)}
-                    onKeyDown={(e) => sendText(e)}
+                    onKeyDown={(e) => sendText(e)} // ENTER key for send
                 />
             </Search>
             <Mic />
