@@ -36,7 +36,7 @@ const ClipIcon = styled(AttachFile)`
 `;
 
 
-const Footer = ({ sendText, setValue }) => {
+const Footer = ({ sendText, setValue, value }) => {
 
     return (
         <Container>
@@ -48,6 +48,7 @@ const Footer = ({ sendText, setValue }) => {
                     placeholder="Type a message"
                     onChange={(e) => setValue(e.target.value)}
                     onKeyDown={(e) => sendText(e)} // ENTER key for send
+                    value={value} // controlled component
                 />
             </Search>
             <Mic />

@@ -36,3 +36,12 @@ export const getConversation = async (data) => {
         console.log(error.message)
     }
 }
+
+export const newMessage = async (data) => {
+    try {
+        let res = await axios.post(`${url}/message/add`, data)
+        return res.data;
+    } catch (error) {
+        console.log(error.message)
+    }
+}

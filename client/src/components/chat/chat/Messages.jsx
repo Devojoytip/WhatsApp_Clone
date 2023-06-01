@@ -2,6 +2,7 @@ import { Box, styled } from '@mui/material';
 import Footer from './Footer';
 import { useContext,useState } from 'react';
 import { AccountContext } from '../../../context/AccountProvider'
+import { newMessage } from '../../../services/api';
 
 const Wrapper = styled(Box)`
     background-image: url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'});
@@ -19,7 +20,7 @@ const Messages = ({ person, conversation }) => {
 
   const [value, setValue] = useState('')
 
-  const sendText = (e) => {
+  const sendText = async (e) => {
     // console.log(e);
     const code = e.keyCode || e.which;
     if (code === 13) {
@@ -34,6 +35,9 @@ const Messages = ({ person, conversation }) => {
       console.log('message - ',message)
 
       // api call to store messages
+      await newMessage(message)
+
+      setValue('')
     }
   }
 
@@ -43,6 +47,7 @@ const Messages = ({ person, conversation }) => {
       <Footer
         sendText={sendText}
         setValue={setValue}
+        value={value} // to change value in input field after msg sent
       ></Footer>
     </Wrapper>
   )
