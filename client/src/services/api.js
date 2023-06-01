@@ -45,3 +45,12 @@ export const newMessage = async (data) => {
         console.log(error.message)
     }
 }
+
+export const getMessage = async (data) => {
+    try {
+        let res = await axios.post(`${url}/message/get`, data)
+        return res.data;
+    } catch (error) {
+        console.log(error.message)
+    }
+}
