@@ -6,7 +6,7 @@ export const addUser = async (data) => {
     try {
         await axios.post(`${url}/add`, data)
     } catch (error) {
-        console.log(error.message)
+        console.log('Error calling addUser api',error.message)
     }
 }
 
@@ -16,7 +16,7 @@ export const getUsers = async (data) => {
         console.log('response ',response)
         return response.data;
     } catch (error) {
-        console.log(error.message)
+        console.log('Error calling getUsers api',error.message)
     }
 }
 
@@ -24,7 +24,7 @@ export const setConversation = async (data) => {
     try {
         await axios.post(`${url}/conversation/add`, data)
     } catch (error) {
-        console.log(error.message)
+        console.log('Error calling setConversation api',error.message)
     }
 }
 
@@ -33,7 +33,7 @@ export const getConversation = async (data) => {
         let res = await axios.post(`${url}/conversation/get`, data)
         return res.data;
     } catch (error) {
-        console.log(error.message)
+        console.log('Error calling getConversation api',error.message)
     }
 }
 
@@ -42,13 +42,13 @@ export const newMessage = async (data) => {
         let res = await axios.post(`${url}/message/add`, data)
         return res.data;
     } catch (error) {
-        console.log(error.message)
+        console.log('Error calling newMessage api',error.message)
     }
 }
 
 export const getMessages = async (id) => {
     try {
-        let res = await axios.post(`${url}/message/get/${id}`)
+        let res = await axios.get(`${url}/message/get/${id}`)
         return res.data;
     } catch (error) {
         console.log('Error calling getMessages api',error.message)
