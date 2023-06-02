@@ -29,6 +29,8 @@ const Messages = ({ person, conversation }) => {
 
   const [newMessageFlag, setNewMessageFlag] = useState(false)
 
+  const [file, setFile] = useState()
+
   const sendText = async (e) => {
     // console.log(e);
     const code = e.keyCode || e.which;
@@ -76,6 +78,8 @@ const Messages = ({ person, conversation }) => {
         sendText={sendText}
         setValue={setValue}
         value={value} // to change value in input field after msg sent
+        file={file}  
+        setFile={setFile}
       ></Footer>
     </Wrapper>
   )
