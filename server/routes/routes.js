@@ -15,6 +15,6 @@ route.post('/conversation/get',getConversation)
 
 // Message routes
 route.post('/message/add',newMessage)
-route.post('/message/get/:id',getMessage)
+route.get('/message/get/:id',getMessage)
 
 export default route;

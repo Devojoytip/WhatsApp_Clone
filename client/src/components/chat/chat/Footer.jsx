@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 import { EmojiEmotionsOutlined, AttachFile, Mic } from '@mui/icons-material';
 import { Box, styled, InputBase } from '@mui/material';
+
+import { uploadFile } from '../../../services/api';
 
 const Container = styled(Box)`
     height: 45px;
@@ -36,12 +38,40 @@ const ClipIcon = styled(AttachFile)`
 `;
 
 
-const Footer = ({ sendText, setValue, value }) => {
+const Footer = ({ sendText, setValue, value, file, setFile }) => {
 
+    useEffect(() => {
+        const getImage = async () => {
+            if (file) {
+                const data = new FormData();
+                data.append("name", file.name);
+                data.append("file", file);
+
+                const response = await uploadFile(data);
+                setFile(response.data);
+            }
+        }
+        getImage(); 
+      
+    }, [file]);
+
+    const onFileChange = (e) => {
+        setValue(e.target.files[0].name);
+        setFile(e.target.files[0]);
+    }
+    
     return (
         <Container>
             <EmojiEmotionsOutlined />
-            <ClipIcon />
+            <label htmlFor="fileInput">
+                <ClipIcon />
+            </label>
+            <input
+                type='file'
+                id="fileInput"
+                style={{ display: 'none' }}
+                onChange={(e) => onFileChange(e)}
+            />
 
             <Search>
                 <InputField
