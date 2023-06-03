@@ -45,7 +45,7 @@ const Messages = ({ person, conversation }) => {
           senderId: account.sub,
           receiverId: person.sub,
           conversationId: conversation._id,
-          type: 'text',
+          type: 'file',
           text: doc // uploaded file
         }
       }
@@ -55,7 +55,7 @@ const Messages = ({ person, conversation }) => {
           senderId: account.sub,
           receiverId: person.sub,
           conversationId: conversation._id,
-          type: 'file',
+          type: 'text',
           text: value // value of message typed & sent
         }
       }
