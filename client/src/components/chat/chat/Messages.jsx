@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 import Footer from './Footer';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { AccountContext } from '../../../context/AccountProvider'
 import { getMessages, newMessage } from '../../../services/api';
 import Message from './Message';
@@ -33,6 +33,8 @@ const Messages = ({ person, conversation }) => {
 
   const [doc, setDoc] = useState('')
 
+  const scrollRef = useRef();
+
   const sendText = async (e) => {
     // console.log(e);
     const code = e.keyCode || e.which;
@@ -49,8 +51,7 @@ const Messages = ({ person, conversation }) => {
           text: doc // uploaded file
         }
       }
-      else
-      {
+      else {
         message = {
           senderId: account.sub,
           receiverId: person.sub,
@@ -80,13 +81,17 @@ const Messages = ({ person, conversation }) => {
     getMessageDetails();
   }, [conversation?._id, person._id, newMessageFlag]);
 
+  // scroll to bottom of chat
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ transition: "smooth" })
+  }, [messages]);
 
   return (
     <Wrapper>
       <Component>
         {
           messages && messages.map(message => (
-            <Container>
+            <Container ref={scrollRef}>
               <Message message={message} />
             </Container>
           ))
@@ -99,7 +104,7 @@ const Messages = ({ person, conversation }) => {
         file={file}
         setFile={setFile}
         doc={doc}
-        setDoc={setDoc} 
+        setDoc={setDoc}
       ></Footer>
     </Wrapper>
   )
