@@ -13,16 +13,16 @@ conn.once('open', () => {
     gfs.collection('fs');
 });
 
-export const uploadImage = (request, response) => {
+export const uploadFile = (request, response) => {
     if(!request.file) 
         return response.status(404).json("File not found");
     
-    const imageUrl = `${url}/file/${request.file.filename}`;
+    const fileUrl = `${url}/file/${request.file.filename}`;
 
-    response.status(200).json(imageUrl);    
+    response.status(200).json(fileUrl);    
 }
 
-export const getImage = async (request, response) => {
+export const getFile = async (request, response) => {
     try {   
         const file = await gfs.files.findOne({ filename: request.params.filename });
         // const readStream = gfs.createReadStream(file.filename);

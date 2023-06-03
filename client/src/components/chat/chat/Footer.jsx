@@ -38,10 +38,10 @@ const ClipIcon = styled(AttachFile)`
 `;
 
 
-const Footer = ({ sendText, setValue, value, file, setFile }) => {
+const Footer = ({ sendText, setValue, value, file, setFile, doc, setDoc }) => {
 
     useEffect(() => {
-        const getImage = async () => {
+        const getFile = async () => {
             if (file) {
                 const data = new FormData();
                 data.append("name", file.name);
@@ -49,10 +49,10 @@ const Footer = ({ sendText, setValue, value, file, setFile }) => {
                 console.log('Data', data)
                 const response = await uploadFile(data);
                 console.log('Response', response)
-                setFile(response);
+                setDoc(response);
             }
         }
-        getImage(); 
+        getFile(); 
       
     }, [file]);
 

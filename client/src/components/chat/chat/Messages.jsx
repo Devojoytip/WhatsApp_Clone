@@ -29,19 +29,35 @@ const Messages = ({ person, conversation }) => {
 
   const [newMessageFlag, setNewMessageFlag] = useState(false)
 
-  const [file, setFile] = useState()
+  const [file, setFile] = useState('')
+
+  const [doc, setDoc] = useState('')
 
   const sendText = async (e) => {
     // console.log(e);
     const code = e.keyCode || e.which;
     if (code === 13) {
       // message which typed & send by user to person
-      let message = {
-        senderId: account.sub,
-        receiverId: person.sub,
-        conversationId: conversation._id,
-        type: 'text',
-        text: value // value of message typed & sent
+      let message = {};
+      console.log('Doc - ', doc)
+      if (doc) {
+        message = {
+          senderId: account.sub,
+          receiverId: person.sub,
+          conversationId: conversation._id,
+          type: 'text',
+          text: doc // uploaded file
+        }
+      }
+      else
+      {
+        message = {
+          senderId: account.sub,
+          receiverId: person.sub,
+          conversationId: conversation._id,
+          type: 'file',
+          text: value // value of message typed & sent
+        }
       }
       console.log('message - ', message)
 
@@ -49,6 +65,8 @@ const Messages = ({ person, conversation }) => {
       await newMessage(message)
 
       setValue('')
+      setFile('')
+      setDoc('')
       setNewMessageFlag(prev => !prev)
     }
   }
@@ -60,7 +78,7 @@ const Messages = ({ person, conversation }) => {
       setMessages(data);
     }
     getMessageDetails();
-  }, [conversation?._id, person._id,newMessageFlag]);
+  }, [conversation?._id, person._id, newMessageFlag]);
 
 
   return (
@@ -78,8 +96,10 @@ const Messages = ({ person, conversation }) => {
         sendText={sendText}
         setValue={setValue}
         value={value} // to change value in input field after msg sent
-        file={file}  
+        file={file}
         setFile={setFile}
+        doc={doc}
+        setDoc={setDoc} 
       ></Footer>
     </Wrapper>
   )
