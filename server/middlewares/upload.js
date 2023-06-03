@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const storage = new GridFsStorage({
-    url: process.env.MONGODB_URL,
+    url: process.env.DB_URL,
     options: { useNewUrlParser: true },
     file: (request, file) => {
         const match = ["image/png", "image/jpg"];

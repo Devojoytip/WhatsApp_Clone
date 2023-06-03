@@ -57,8 +57,9 @@ export const getMessages = async (id) => {
 
 export const uploadFile = async (data) => {
     try {
-        return await axios.post(`${url}/file/upload`, data);
+        let res= await axios.post(`${url}/file/upload`, data);
+        return res.data;
     } catch (error) {
-        console.log('Error while calling newConversations API ', error);
+        console.log('Error while calling uploadFile API ', error);
     }
 }
