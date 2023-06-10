@@ -19,7 +19,7 @@ const ChatBox = () => {
     }
 
     getConversationDetails();
-  }, [account.sub])
+  }, [account.sub,person.sub])
 
   return (
     <Box>

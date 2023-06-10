@@ -45,7 +45,7 @@ const Conversations = ({text}) => {
         users.map(user => (
           user.sub !== account.sub && // check if same user then no chat 
           <>
-          <Conversation user={user} key={user.sub}></Conversation>
+          <Conversation user={user}></Conversation>
           <StyledDivider></StyledDivider>
           </>
         ))

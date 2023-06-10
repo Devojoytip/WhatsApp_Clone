@@ -26,6 +26,8 @@ const Conversation = ({ user }) => {
   // handle click to show chats & start conversation using API
   const getUser = async () => {
     setPerson(user) // set the other person whose chat loaded
+    console.log('user on click conversation is ', user)
+    console.log('user sub on click conversation is ', user.sub)
     await setConversation({ senderId: account.sub, receiverId: user.sub });
   }
 
