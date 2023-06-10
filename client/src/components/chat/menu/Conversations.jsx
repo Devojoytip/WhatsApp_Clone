@@ -20,7 +20,7 @@ const Conversations = ({text}) => {
 
   const [users, setUsers] = useState([]);
 
-  const { account } = useContext(AccountContext)
+  const { account, socket, setActiveUsers } = useContext(AccountContext)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +31,13 @@ const Conversations = ({text}) => {
     fetchData();
   }, [text]); 
 
+  useEffect(() => {
+    socket.current.emit('addUser', account); // to add new online user to socket
+    socket.current.on('getUsers', (users) => {
+      setActiveUsers(users)
+    })
+  },[account])
+  
   return (
     <Component>
       {

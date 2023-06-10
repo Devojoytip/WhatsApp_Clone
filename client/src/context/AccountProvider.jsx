@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createContext } from "react";
 import { io } from 'socket.io-client';
-
 
 export const AccountContext = createContext(null)
 
@@ -10,6 +9,8 @@ const AccountProvider = ({children}) => {
     const [account, setAccount] = useState(null)
 
     const [person, setPerson] = useState({})
+
+    const [activeUsers, setActiveUsers] = useState([]) // to store all online users
 
     const socket = useRef();
 
@@ -23,7 +24,9 @@ const AccountProvider = ({children}) => {
             setAccount,
             person,
             setPerson,
-            socket
+            socket,
+            activeUsers,
+            setActiveUsers
         }}>
             {children}
         </AccountContext.Provider>

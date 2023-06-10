@@ -11,7 +11,7 @@ const Header = styled(Box)`
     padding: 8px 16px;
     align-items: center;
 `;
-    
+
 const Image = styled('img')({
     width: 40,
     height: 40,
@@ -38,20 +38,27 @@ const Status = styled(Typography)`
     margin-left: 12px !important;
 `;
 
-const ChatHeader = ({person}) => {  
-    
-    const {account}=useContext(AccountContext)
+const ChatHeader = ({ person }) => {
+
+    const { activeUsers } = useContext(AccountContext)
     return (
         <Header>
-            <Image src={person.picture} alt="display picture" />     
+            <Image src={person.picture} alt="display picture" />
             <Box>
                 <Name>{person.name}</Name>
-                <Status>Online</Status>    
-            </Box>   
+                <Status>
+                    {
+                        // activeUsers.some(user => user.sub === person.sub) ? 'Online' : 'Offline'
+                        // or
+                        activeUsers?.find(user => user.sub === person.sub) ? 'Online' : 'Offline' // if activeUsers is not null then find the user with sub=person.sub)
+
+                    }
+                </Status>
+            </Box>
             <RightContainer>
                 <Search />
-                <MoreVert />    
-            </RightContainer> 
+                <MoreVert />
+            </RightContainer>
         </Header>
     )
 }
